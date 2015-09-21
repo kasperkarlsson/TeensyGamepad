@@ -22,10 +22,11 @@ void loop() {
     digitalWrite(LED_PIN, last_state);
     Serial.println(button_state);
     if (button_state == HIGH) {
-      Serial.println("Button pressed");
+      Serial.println("Button released");
     }
     else {
-      Serial.println("Button released");
+      Serial.println("Button pressed");
+      Keyboard.print("A");
     }
     last_state = button_state;
   }
