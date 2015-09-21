@@ -4,27 +4,30 @@ https://github.com/kasperkarlsson/TeensyGamepad
 */
 
 const int LED_PIN = 11;
-boolean led_state = HIGH;
-boolean enabled = false;
-boolean key_enabled = false;
+const int BUTTON_PIN = 2;
+
+int button_state, last_state = HIGH;
 
 void setup() {
   Serial.begin(9600);
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, LOW);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  Serial.println("Serial ready");
 }
 
 void loop() {
-  if (key_enabled) {
-    Keyboard.println("wasd");
+  button_state = digitalRead(BUTTON_PIN);
+  if (button_state != last_state) {
+    digitalWrite(LED_PIN, last_state);
+    Serial.println(button_state);
+    if (button_state == HIGH) {
+      Serial.println("Button pressed");
+    }
+    else {
+      Serial.println("Button released");
+    }
+    last_state = button_state;
   }
-  enabled = !enabled;
-  if (enabled)
-  
-    digitalWrite(LED_PIN, HIGH);
-  else
-    digitalWrite(LED_PIN, LOW);
-    
-  delay(5000);
-
+  delay(50);
 }
