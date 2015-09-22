@@ -1,6 +1,9 @@
 # TeensyGamepad
 An arcade-style gamepad system based on Teensy 2.0.
 
+## Status
+Under development (not finished).
+
 ## Purpose
 This project lets a Teensy microcontroller send keyboard events to a PC, based on input from arcade controller components.
 
@@ -19,3 +22,6 @@ The code can be compiled and uploaded to the Teensy 2.0 board through [Teensydui
 
 ## Pin setup
 TODO - refer to source code for documentation
+
+## Images
+TODO
