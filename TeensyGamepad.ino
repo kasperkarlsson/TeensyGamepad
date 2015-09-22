@@ -4,31 +4,47 @@ https://github.com/kasperkarlsson/TeensyGamepad
 */
 
 const int LED_PIN = 11;
-const int BUTTON_PIN = 2;
 
-int button_state, last_state = HIGH;
+// Button pin mappings
+const int button_pins[] = {2, 3, 4, 5};
+// Button key mappings
+const char button_keys[] = {'W', 'A', 'S', 'D'};
+
+const int number_of_buttons = (sizeof(button_pins)/sizeof(int));
+int button_states[number_of_buttons];
+int last_states[number_of_buttons];
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("Serial ready");
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, LOW);
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
-  Serial.println("Serial ready");
+  Serial.println("Setting up pins and initializing");
+  for (int i=0; i<number_of_buttons; i++) {
+    // Setup button pin
+    pinMode(button_pins[i], INPUT_PULLUP);
+    // Initialize last state to avoid trigging on start
+    last_states[i] = HIGH;
+  }
+  Serial.println("Setup complete!");
 }
 
 void loop() {
-  button_state = digitalRead(BUTTON_PIN);
-  if (button_state != last_state) {
-    digitalWrite(LED_PIN, last_state);
-    Serial.println(button_state);
-    if (button_state == HIGH) {
-      Serial.println("Button released");
+  for (int i=0; i<number_of_buttons; i++) {
+    button_states[i] = digitalRead(button_pins[i]);
+    if (button_states[i] != last_states[i]) {
+      digitalWrite(LED_PIN, last_states[i]);
+      Serial.print("Button pressed: ");
+      Serial.println(i);
+      if (button_states[i] == HIGH) {
+        Serial.println(" Released!");
+      }
+      else {
+        Serial.print("Button pressed...");
+        Keyboard.print(button_keys[i]);
+      }
+      last_states[i] = button_states[i];
     }
-    else {
-      Serial.println("Button pressed");
-      Keyboard.print("A");
-    }
-    last_state = button_state;
   }
-  delay(50);
+  delay(20);
 }
