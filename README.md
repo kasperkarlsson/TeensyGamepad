@@ -21,7 +21,11 @@ The code can be compiled and uploaded to the Teensy 2.0 board through [Teensydui
 * Set the correct USB type (Serial + Keyboard + Mouse + Joystick) under Tools -> USB Type.
 
 ## Pin setup
-TODO - refer to source code for documentation
+Pin 2 - Button W
+Pin 3 - Button A
+Pin 4 - Button S
+Pin 5 - Button D
+Pin 11 - Internal LED of Teensy 2.0 (Note: change to 6 if using Teensy++ 2.0)
 
 ## Images
 TODO
