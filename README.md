@@ -17,14 +17,20 @@ You can probably find even cheaper sources for the hardware if you search at sit
 ## Build instructions
 The code can be compiled and uploaded to the Teensy 2.0 board through [Teensyduino](http://pjrc.com/teensy/td_download.html), which is available for Linux, Mac and Windows.
 
-* Select the correct board model (Teensy 2.0 or Teensy++ 2.0) in the Arduino IDE under Tools -> Board.
-* Set the correct USB type (Serial + Keyboard + Mouse + Joystick) under Tools -> USB Type.
+* Select the correct board model (Teensy 2.0 or Teensy++ 2.0) in the Arduino IDE under Tools -> Board
+* Select the right COM port under Tools -> Serial Port
+* Set the correct USB type (Serial + Keyboard + Mouse + Joystick) under Tools -> USB Type
+* Compile and upload <i>TeensyGamepad.ino</i>
 
 ## Pin setup
-Pin 2 - Button W
-Pin 3 - Button A
-Pin 4 - Button S
-Pin 5 - Button D
+Pin 2 - Button 0 (W)<br />
+Pin 3 - Button 1 (A)<br />
+Pin 4 - Button 2 (S)<br />
+Pin 5 - Button 3 (D)<br />
+Pin 7 - Joystick 0 (LEFT)<br />
+Pin 8 - Joystick 1 (UP)<br />
+Pin 9 - Joystick 2 (RIGHT)<br />
+Pin 10 - Joystick 3 (DOWN)<br />
 Pin 11 - Internal LED of Teensy 2.0 (Note: change to 6 if using Teensy++ 2.0)
 
 ## Images

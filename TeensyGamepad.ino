@@ -4,7 +4,8 @@ https://github.com/kasperkarlsson/TeensyGamepad
 */
 
 // Internal LED - change to 6 if using Teensy++ 2.0
-const int led_pin = 11; 
+//TODO: Use LED_BUILTIN instead?
+const int led_pin = 11;
 
 // Button pin mappings
 const int button_pins[] = {2, 3, 4, 5};
@@ -44,6 +45,7 @@ void setup() {
 }
 
 void loop() {
+  // Handle joystick functionality
   for (int i=0; i<number_of_joystick_pins; i++) {
     input_tmp = digitalRead(joystick_pins[i]);
     if (input_tmp != last_joystick_states[i]) {
@@ -52,17 +54,20 @@ void loop() {
         Serial.print("Joystick ");
         Serial.print(i);
         Serial.println(" released");
+        // Release key
         Keyboard.release(joystick_keys[i]);
       }
       else {
         Serial.print("Joystick ");
         Serial.print(i);
         Serial.println(" pressed");
+        // Press key and keep it down
         Keyboard.press(joystick_keys[i]);
       }
       last_joystick_states[i] = input_tmp;
     }
   }
+  // Handle button functionality
   for (int i=0; i<number_of_buttons; i++) {
     input_tmp = digitalRead(button_pins[i]);
     if (input_tmp != last_states[i]) {
@@ -74,6 +79,7 @@ void loop() {
         Serial.print("Button ");
         Serial.print(i);
         Serial.print(" pressed...");
+        // Single press for buttons
         Keyboard.print(button_keys[i]);
       }
       last_states[i] = input_tmp;
