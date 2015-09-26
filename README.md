@@ -31,7 +31,7 @@ Pin 7 - Joystick 0 (LEFT)<br />
 Pin 8 - Joystick 1 (UP)<br />
 Pin 9 - Joystick 2 (RIGHT)<br />
 Pin 10 - Joystick 3 (DOWN)<br />
-Pin 11 - Internal LED of Teensy 2.0 (Note: change to 6 if using Teensy++ 2.0)
+LED_BUILTIN - Internal LED (Note: 11 on Teensy 2.0, 6 on Teensy++ 2.0)
 
 ## Images
 TODO

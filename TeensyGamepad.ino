@@ -3,10 +3,6 @@ Teensy Gamepad
 https://github.com/kasperkarlsson/TeensyGamepad
 */
 
-// Internal LED - change to 6 if using Teensy++ 2.0
-//TODO: Use LED_BUILTIN instead?
-const int led_pin = 11;
-
 // Button pin mappings
 const int button_pins[] = {2, 3, 4, 5};
 // Button key mappings
@@ -26,8 +22,8 @@ int input_tmp;
 void setup() {
   Serial.begin(9600);
   Serial.println("Serial ready");
-  pinMode(led_pin, OUTPUT);
-  digitalWrite(led_pin, LOW);
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);
   Serial.println("Setting up pins and initializing");
   for (int i=0; i<number_of_buttons; i++) {
     // Setup button pin
@@ -49,7 +45,7 @@ void loop() {
   for (int i=0; i<number_of_joystick_pins; i++) {
     input_tmp = digitalRead(joystick_pins[i]);
     if (input_tmp != last_joystick_states[i]) {
-      digitalWrite(led_pin, last_joystick_states[i]);
+      digitalWrite(LED_BUILTIN, last_joystick_states[i]);
       if (input_tmp == HIGH) {
         Serial.print("Joystick ");
         Serial.print(i);
@@ -71,7 +67,7 @@ void loop() {
   for (int i=0; i<number_of_buttons; i++) {
     input_tmp = digitalRead(button_pins[i]);
     if (input_tmp != last_states[i]) {
-      digitalWrite(led_pin, last_states[i]);
+      digitalWrite(LED_BUILTIN, last_states[i]);
       if (input_tmp == HIGH) {
         Serial.println(" Released!");
       }
