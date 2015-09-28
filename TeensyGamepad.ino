@@ -12,12 +12,28 @@ const int joystick_pins[] = {7, 8, 9, 10};
 // Joystick key mappings (arro)
 const int joystick_keys[] = {KEY_LEFT, KEY_UP, KEY_RIGHT, KEY_DOWN};
 
-const int number_of_buttons = (sizeof(button_pins)/sizeof(int));
+const int number_of_buttons = (sizeof(button_pins) / sizeof(int));
 int last_states[number_of_buttons];
 
-const int number_of_joystick_pins = (sizeof(joystick_pins)/sizeof(int));
+const int number_of_joystick_pins = (sizeof(joystick_pins) / sizeof(int));
 int last_joystick_states[number_of_joystick_pins];
 int input_tmp;
+
+void printButtonStatus(boolean is_button, int index, boolean pressed) {
+  if (is_button) {
+    Serial.print("Button ");
+  }
+  else {
+    Serial.print("Joystick ");
+  }
+  Serial.print(index);
+  if (pressed) {
+    Serial.println(" pressed");
+  }
+  else {
+    Serial.println(" released");
+  }
+}
 
 void setup() {
   Serial.begin(9600);
@@ -68,13 +84,9 @@ void loop() {
     input_tmp = digitalRead(button_pins[i]);
     if (input_tmp != last_states[i]) {
       digitalWrite(LED_BUILTIN, last_states[i]);
-      if (input_tmp == HIGH) {
-        Serial.println(" Released!");
-      }
-      else {
-        Serial.print("Button ");
-        Serial.print(i);
-        Serial.print(" pressed...");
+      boolean is_low = input_tmp == LOW;
+      printButtonStatus(true, i, is_low);
+      if (is_low) {
         // Single press for buttons
         Keyboard.print(button_keys[i]);
       }
