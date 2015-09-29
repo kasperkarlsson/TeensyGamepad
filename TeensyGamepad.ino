@@ -62,19 +62,15 @@ void loop() {
     input_tmp = digitalRead(joystick_pins[i]);
     if (input_tmp != last_joystick_states[i]) {
       digitalWrite(LED_BUILTIN, last_joystick_states[i]);
-      if (input_tmp == HIGH) {
-        Serial.print("Joystick ");
-        Serial.print(i);
-        Serial.println(" released");
-        // Release key
-        Keyboard.release(joystick_keys[i]);
-      }
-      else {
-        Serial.print("Joystick ");
-        Serial.print(i);
-        Serial.println(" pressed");
+      boolean is_low = input_tmp == LOW;
+      printButtonStatus(false, i, is_low);
+      if (is_low) {
         // Press key and keep it down
         Keyboard.press(joystick_keys[i]);
+      }
+      else {
+        // Release key
+        Keyboard.release(joystick_keys[i]);
       }
       last_joystick_states[i] = input_tmp;
     }
