@@ -2,7 +2,7 @@
 An arcade-style gamepad based on Teensy 2.0 (also compatible with Teensy++ 2.0).
 
 ## Purpose
-This project lets a Teensy microcontroller take input from arcade controller components, convert it to key strokes and send them to a computer. The gamepad is connected to a computer via USB.
+This project lets a Teensy microcontroller take input from arcade controller components, convert the input to key strokes and send them to a computer. The gamepad is connected to the computer via USB.
 
 ## Hardware
 * Teensy 2.0 ([PJRC](http://pjrc.com/store/teensy.html), [AliExpress](http://www.aliexpress.com/item/Teensy-2-0-USB-Keyboard-Mouse-AVR-for-arduino-ISP-Board-Mega32u4-U-Disk-Experiment-usb/32363184858.html)) or Teensy++ 2.0 ([PJRC](http://pjrc.com/store/teensypp.html), [AliExpress](http://www.aliexpress.com/item/Genuine-PJRC-Teensy-2-0-USB-AVR-develope-board-for-ps3-Teensy-free-1pcs-usb-cable/32224600966.html))
@@ -27,8 +27,7 @@ Pin 5 - Button 3 (D)<br />
 Pin 7 - Joystick 0 (LEFT)<br />
 Pin 8 - Joystick 1 (UP)<br />
 Pin 9 - Joystick 2 (RIGHT)<br />
-Pin 10 - Joystick 3 (DOWN)<br />
-LED_BUILTIN - Internal LED (Note: 11 on Teensy 2.0, 6 on Teensy++ 2.0)
+Pin 10 - Joystick 3 (DOWN)
 
 ## Images
 TODO
